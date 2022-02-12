@@ -10,12 +10,7 @@ RUN yarn build
 
 # 빌드 파일만 쏙 빼가기
 
-FROM node:lts-alpine
-
-WORKDIR /app
-COPY --from=builder /app/.nuxt .
-
-ENV HOST 0.0.0.0
-EXPOSE 3000
-
-CMD [ "yarn", "start" ]
+FROM nginx
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/public /etc/nginx/html
+EXPOSE 8080

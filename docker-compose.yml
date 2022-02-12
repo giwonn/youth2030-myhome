@@ -8,15 +8,15 @@ services:
       context: ./front
       dockerfile: Dockerfile
     image: youth2030-myhome-front
-    container_name: front
+    container_name: youth2030-myhome-front
     restart: always
 
   nginx:
     image: nginx:latest
-    container_name: nginx
+    container_name: youth2030-myhome-nginx
     restart: always
     ports:
-      - 80:80
+      - 4000:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
