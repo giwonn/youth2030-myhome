@@ -1,0 +1,26 @@
+version: '1.0'
+# docker compose -f docker-compose.yml up -d
+# docker compose -f docker-compose.yml down -v
+
+services:
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    image: youth2030-myhome-front
+    container_name: front
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - front
+
+volumes:
+  front:
