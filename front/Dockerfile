@@ -8,9 +8,6 @@ COPY . .
 
 RUN yarn build
 
-# 빌드 파일만 쏙 빼가기
+EXPOSE 3000
 
-FROM nginx
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/public /etc/nginx/html
-EXPOSE 8080
+CMD [ "yarn", "start" ]

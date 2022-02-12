@@ -20,11 +20,11 @@ services:
       - front:/app/node_modules
 
   nginx:
-    image: nginx:latest
+    image: nginx
     container_name: youth2030-myhome-nginx
     restart: always
     ports:
-      - 4000:80
+      - 10000:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
