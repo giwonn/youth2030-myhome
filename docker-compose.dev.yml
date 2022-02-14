@@ -24,7 +24,7 @@ services:
     container_name: youth2030-myhome-nginx
     restart: always
     ports:
-      - 10000:80
+      - 80:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
