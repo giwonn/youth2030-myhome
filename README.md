@@ -7,27 +7,13 @@
 
 <br>
 
-## 실행 방법
-### dev
-```
-docker compose -f docker-compose.dev.yml up -d
-```
-### production
-```
-docker compose docker-compose.yml up -d
-```
 
-도커 컨테이너 생성 후 잠시 기다렸다가 브라우저로 `localhost:4000` 접속
+### 현황
 
-<br>
+- **Frontend** : React.js
+- **Backend** : Nest.js
 
+## 해야할 일
 
-## 개발 현황
-
-
-### 2022/02/12
-개발환경 세팅 완료
-- **Frontend** : Nuxt.js
-- **Backend** : Next.js  
-- **Nginx** : 리버스 프록시 이용하여 nginx에만 SSL 적용 예정
-- **Docker** : develop, production 분리
+- 백엔드는 라즈베리파이로 서버 만들어서 돌려보자...
+- 리버스 프록시로 CORS 해결하기 (+ SSL 적용)
