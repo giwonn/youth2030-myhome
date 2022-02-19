@@ -12,7 +12,7 @@ export class SearchService {
   private readonly url: string =
     'https://openapi.naver.com/v1/search/local.json';
 
-  async getSearchResult(search: string) {
+  getSearchResult(search: string) {
     const params = {
       query: search,
       display: 5,
@@ -25,8 +25,6 @@ export class SearchService {
       params,
       headers,
     };
-
-    const { status, data } = await axios.get(this.url, options);
-    return { status, data };
+    return axios.get(this.url, options).then((res) => res.data);
   }
 }

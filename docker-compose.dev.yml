@@ -13,10 +13,10 @@ services:
     container_name: youth2030-myhome-front
     restart: always
     build:
-      context: ./front
+      context: ./front-cra
       dockerfile: Dockerfile.dev
     volumes:
-      - ./front:/app
+      - ./front-cra:/app
       - front:/app/node_modules
     
   back:
@@ -37,7 +37,7 @@ services:
     container_name: youth2030-myhome-nginx
     restart: always
     ports:
-      - 80:80
+      - 10000:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
