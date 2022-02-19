@@ -8,18 +8,29 @@ version: '1.0'
 # -f 기본으로 제공하는 docker-compose.yml이 아닌 다른 파일명을 실행할 때 사용
 
 services:
+  front:
+    image: youth2030-myhome-front
+    container_name: youth2030-myhome-front
+    restart: always
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./front:/app
+      - front:/app/node_modules
+    
   back:
     build:
       context: ./back
       dockerfile: Dockerfile.dev
-      target: unit-test
+      # target: unit-test
     image: youth2030-myhome-back
     container_name: youth2030-myhome-back
     restart: always
     volumes:
-      - ./back:/app/back
-      - back:/app/back/node_modules
-      - .git:/app/.git
+      - ./back:/app
+      - back:/app/node_modules
+      # - .git:/app/.git
 
   nginx:
     image: nginx
@@ -30,7 +41,9 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
+      - front
       - back
 
 volumes:
+  front:
   back:
