@@ -1,17 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import NaverService from './naver.service';
+import { NaverModule } from './naver/naver.module';
+import { ConfigurationModule } from './config.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      envFilePath: `${__dirname}/../env/.${process.env.NODE_ENV}.env`,
-      isGlobal: true,
-    }),
-  ],
+  imports: [ConfigurationModule, NaverModule],
   controllers: [AppController],
-  providers: [AppService, NaverService],
+  providers: [AppService],
 })
 export class AppModule {}

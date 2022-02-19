@@ -3,14 +3,6 @@ version: '1.0'
 # docker compose -f docker-compose.yml down -v
 
 services:
-  front:
-    build:
-      context: ./front
-      dockerfile: Dockerfile
-    image: youth2030-myhome-front
-    container_name: youth2030-myhome-front
-    restart: always
-
   nginx:
     image: nginx:latest
     container_name: youth2030-myhome-nginx

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
+export class NaverService {
   getHello(): string {
-    return 'Here is AppController';
+    return 'Here is NaverController';
   }
 }

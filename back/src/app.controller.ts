@@ -1,13 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import NaverService from './naver.service';
-import { AxiosRequestConfig } from 'axios';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly naverService: NaverService) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): AxiosRequestConfig {
-    return this.naverService.getSearchResult();
+  getHello(): string {
+    return this.appService.getHello();
   }
 }
