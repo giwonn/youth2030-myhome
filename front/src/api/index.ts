@@ -1,5 +1,5 @@
 import axios from 'axios';
-import naver from './naver';
+import naver from '@/api/naver';
 
 export default {
   naver,

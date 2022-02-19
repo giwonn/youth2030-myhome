@@ -1,4 +1,4 @@
-import naver from './naver';
+import naver from '@/lib/naver';
 
 export default {
   naver,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import './App.css';
-import Default from './pages/Default';
+import '@/App.css';
+import Default from '@/pages/Default';
 
 function App() {
   return (

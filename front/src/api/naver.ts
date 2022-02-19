@@ -1,4 +1,4 @@
-import { callApi } from './common';
+import { callApi } from '@/api/common';
 import { AxiosRequestHeaders } from 'axios';
 
 async function getSearchResult(search: string) {
