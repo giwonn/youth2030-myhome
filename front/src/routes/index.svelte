@@ -15,7 +15,7 @@
 </svelte:head>
 
 <section>
-  <LayoutGrid>
+  <LayoutGrid style="padding:0;">
     <Cell span={9}>
       <NaverMap style="height: {childHeight};" />
     </Cell>

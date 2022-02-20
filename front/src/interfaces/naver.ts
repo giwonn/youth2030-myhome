@@ -1,4 +1,4 @@
-interface SearchResultItems {
+export interface SearchResultItems {
   address: string;
   category: string;
   description: string;
@@ -10,7 +10,7 @@ interface SearchResultItems {
   title: string;
 }
 
-interface SearchResultData {
+export interface SearchResultData {
   display: number;
   items: SearchResultItems[];
   lastBuildDate: string;

@@ -6,9 +6,11 @@
   import Card from '@smui/card';
   import Fab from '@smui/fab';
   import api from '@/api';
+  import type { SearchResultItems } from '@/interfaces/naver'
 
   export let style: string = '';
   let value = '';
+  let searchResult = [];
 
   function handleKeyDown(event: CustomEvent | KeyboardEvent) {
     event = event as KeyboardEvent;
@@ -17,7 +19,9 @@
     }
   }
   async function doSearch() {
-    const res = await api.naver.getSearchResult(value);
+    const res: SearchResultItems[] = await api.naver.getSearchResult(value);
+    searchResult = res.map(({title}) => title)
+    console.log(searchResult)
   }
 </script>
 
@@ -45,7 +49,13 @@
         </Fab>
       </div>
     </Cell>
-    <Cell span={12}>검색결과 리스트로 여기에 출력</Cell>
+    <Cell span={12}>
+      {#each searchResult as data}
+      <Card style="margin: 10px 0">
+        {@html data}
+      </Card>
+      {/each}
+    </Cell>
   </InnerGrid>
 </Card>
 
