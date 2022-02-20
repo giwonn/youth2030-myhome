@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Req } from '@nestjs/common';
 import { SearchService } from './search.service';
 
-@Controller('naver/search')
+@Controller('api/naver/search')
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 

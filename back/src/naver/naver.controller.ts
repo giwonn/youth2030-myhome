@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { NaverService } from './naver.service';
 
-@Controller('naver')
+@Controller('api/naver')
 export class NaverController {
   constructor(private readonly naverService: NaverService) {}
 

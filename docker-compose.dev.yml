@@ -8,17 +8,19 @@ version: '1.0'
 # -f 기본으로 제공하는 docker-compose.yml이 아닌 다른 파일명을 실행할 때 사용
 
 services:
-  front:
-    image: youth2030-myhome-front
-    container_name: youth2030-myhome-front
-    restart: always
-    build:
-      context: ./front-cra
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./front-cra:/app
-      - front:/app/node_modules
-    
+  # front:
+  #   image: youth2030-myhome-front
+  #   container_name: youth2030-myhome-front
+  #   restart: always
+  #   build:
+  #     context: ./front-sveltekit
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - ./front-sveltekit:/app
+  #     - front:/app/node_modules
+  #   ports:
+  #     - 3000:3000
+
   back:
     build:
       context: ./back
