@@ -1,0 +1,23 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch src --exec \"npx\" \"ts-node\" src/app.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "node-cron": "^3.0.0",
+    "playwright": "^1.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.19",
+    "@types/node-cron": "^3.0.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
