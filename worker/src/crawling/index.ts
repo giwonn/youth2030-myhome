@@ -3,12 +3,15 @@ import { Browser, chromium, Locator, Page } from 'playwright';
 // 토지이용계획이력을 가져와서 건설 예정인 청년주택 리스트 다운로드
 async function crawling() {
   //   const updatedDate = getUpdatedDate(); // 디비에서 updatedDate 가장 최신자로 가져옴
-  const URL = 'https://openapi.jigu.go.kr/main.do'
+  const URL = 'https://openapi.jigu.go.kr/main.do';
+
   const browser = await initBrowser();
   const page = await initPage(browser, URL);
 
   // 상세페이지로 이동
-  await moveToDetailPage(page);
+  const selectorsForMoveToDetailpage = ['[data-table=BLS5_DSTRC_STEP]', 'xpath=..', '.btn_detail']
+  const ButtonForDetailPage = await moveToDetailPage(page, selectorsForMoveToDetailpage);
+  ButtonForDetailPage.click();
 
   // 서울 지역 토지이용계획이력 CSV 다운 버튼으로 이동
   const seoulColumn: Locator = page.locator('td:nth-child(2)', {hasText: '서울'}).locator('xpath=..');
@@ -19,6 +22,7 @@ async function crawling() {
   // 버튼 클릭하여 다운로드
   const [download] = await getDownloadFile(page, seoulColumn, 'text=CSV')
   const path = await download.path(); // 어디에 저장되어있는지 확인
+  console.log(path)
 
   await pageClose(page)
   console.log('토지이용계획이력 크롤링 End');
@@ -41,11 +45,10 @@ async function initPage(browser: Browser, url: string) {
   return page;
 }
 
-async function moveToDetailPage(page: Page) {
-  await page.locator('[data-table=BLS5_DSTRC_STEP]')
-  .locator('xpath=..')
-  .locator('.btn_detail')
-  .click();
+function moveToDetailPage(page: Page, selectors: any[]) {
+  return selectors.reduce((page, selector) => {
+    return page.locator(selector)
+  }, page)
 }
 
 function getDownloadFile(page: Page, locator: Locator, selector: string) {
