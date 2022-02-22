@@ -1,11 +1,11 @@
 import crawling from './crawling';
-import cron from 'node-cron';
+import schedule from 'node-schedule';
 
 // 토지주택공사 크롤링은 데이터 업데이트 주기가 길다.
 // 그래서 업데이트 날짜를 비교해가며 하루에 한번씩 토지주택공사 사이트 들어가서 파일이 최신화가 되어있는지 확인
 // 업데이트날짜가 다를때만 파일 다운받아서 업데이트
 
-cron.schedule('0 0 * * *', crawling);
+schedule.scheduleJob('0 0 * * *', crawling);
 
 // crawling();
 

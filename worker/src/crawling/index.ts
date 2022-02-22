@@ -1,46 +1,62 @@
-import { chromium, Locator } from 'playwright';
+import { Browser, chromium, Locator, Page } from 'playwright';
 
 // 토지이용계획이력을 가져와서 건설 예정인 청년주택 리스트 다운로드
-const crawling = async () => {
-  //   const updateDate = DATABASE?.updateDate;
+async function crawling() {
+  //   const updatedDate = getUpdatedDate(); // 디비에서 updatedDate 가장 최신자로 가져옴
+  const URL = 'https://openapi.jigu.go.kr/main.do'
+  const browser = await initBrowser();
+  const page = await initPage(browser, URL);
 
-  console.log('토지이용계획이력 크롤링 Start');
-  const browser = await chromium.launch({
+  // 상세페이지로 이동
+  await moveToDetailPage(page);
+
+  // 서울 지역 토지이용계획이력 CSV 다운 버튼으로 이동
+  const seoulColumn: Locator = page.locator('td:nth-child(2)', {hasText: '서울'}).locator('xpath=..');
+  const newDate = await seoulColumn.locator('td:nth-child(4)').innerHTML(); // 파일 업데이트 날짜
+
+  //   if (updatedDate === newDate) return;
+
+  // 버튼 클릭하여 다운로드
+  const [download] = await getDownloadFile(page, seoulColumn, 'text=CSV')
+  const path = await download.path(); // 어디에 저장되어있는지 확인
+
+  await pageClose(page)
+  console.log('토지이용계획이력 크롤링 End');
+}
+
+function initBrowser() {
+  return chromium.launch({
     headless: true,
     args: ['--disable-dev-shm-usage'],
   });
+}
 
+async function initPage(browser: Browser, url: string) {
   const context = await browser.newContext({});
   const page = await context.newPage();
 
   // 택지정보 속성자료 페이지로 이동
-  await page.goto('https://openapi.jigu.go.kr/main.do');
+  await page.goto(url);
 
-  // 상세페이지로 이동
-  await page
-    .locator('[data-table=BLS5_DSTRC_STEP]')
-    .locator('xpath=..')
-    .locator('.btn_detail')
-    .click();
+  return page;
+}
 
-  // 서울 지역 토지이용계획이력 CSV 다운 버튼으로 이동
-  const seoul: Locator = page.locator('td:nth-child(2)', { hasText: '서울' }).locator('xpath=..');
-  const newDate = await seoul.locator('td:nth-child(4)').innerHTML(); // 파일 업데이트 날짜
+async function moveToDetailPage(page: Page) {
+  await page.locator('[data-table=BLS5_DSTRC_STEP]')
+  .locator('xpath=..')
+  .locator('.btn_detail')
+  .click();
+}
 
-  //   if (updateDate === newDate) return;
-
-  // 버튼 클릭하여 다운로드
-  const [download] = await Promise.all([
+function getDownloadFile(page: Page, locator: Locator, selector: string) {
+  return Promise.all([
     page.waitForEvent('download'),
-    seoul.locator('text=CSV').click(),
-  ]);
+    locator.locator(selector).click(),
+  ])
+}
 
-  // 어디에 저장되어있는지 확인
-  const path = await download.path();
-  //   console.log(path);
-
-  console.log('토지이용계획이력 크롤링 End');
-  await page.close();
-};
+function pageClose(page: Page) {
+  return page.close();
+}
 
 export default crawling;
