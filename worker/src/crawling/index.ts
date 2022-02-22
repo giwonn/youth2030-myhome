@@ -45,10 +45,8 @@ async function initPage(browser: Browser, url: string) {
   return page;
 }
 
-function moveToDetailPage(page: Page, selectors: any[]) {
-  return selectors.reduce((page, selector) => {
-    return page.locator(selector)
-  }, page)
+function moveToDetailPage(startPage: Page, selectors: any[]) {
+  return selectors.reduce((page, selector) => page.locator(selector), startPage)
 }
 
 function getDownloadFile(page: Page, locator: Locator, selector: string) {
