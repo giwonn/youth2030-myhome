@@ -1,4 +1,4 @@
-import crawling from './crawling';
+import crawling from './crawling/constructionPlan';
 import schedule from 'node-schedule';
 
 // 토지주택공사 크롤링은 데이터 업데이트 주기가 길다.
