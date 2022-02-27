@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "yarn build:live",
     "build": "tsc -p .",
-    "build:live": "nodemon --watch src --exec \"npx\" \"ts-node\" src/app.ts"
+    "build:live": "nodemon --watch src --exec \"npx\" \"ts-node\" src/app.ts",
+    "test": "npx playwright test"
   },
   "dependencies": {
     "express": "^4.17.3",

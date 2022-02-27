@@ -1,14 +1,11 @@
 import { test, expect } from '@playwright/test';
-import SupplyPlan from './supplyPlan';
+import SupplyPlan from '../src/crawling/youth2030/supplyPlan';
 
 
 test.describe('supplyPlan', () => {
 
-    test('첫번째 값이 일치한다.', async ({ page }) => {
-        await page.goto('https://playwright.dev/');
-        const title = page.locator('.navbar__inner .navbar__title');
-        await expect(title).toHaveText('Playwright');
 
+    test('첫번째 값이 일치한다.', async () => {
         const FIRST_CONTENT = {
             location: {
                 year: 2019,
@@ -23,8 +20,8 @@ test.describe('supplyPlan', () => {
             },
             architects: '㈜옥산종합건축'
         };
-
         const supplyPlan = await SupplyPlan();
-        expect(supplyPlan).toContainEqual(FIRST_CONTENT);
+
+        expect(supplyPlan[0]).toEqual(FIRST_CONTENT);
     });
 })
