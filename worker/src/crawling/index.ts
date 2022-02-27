@@ -1,5 +1,5 @@
-import constructionPlan from './constructionPlan';
-import youth2030 from './youth2030/supplyPlan';
+import constructionPlan from '@/crawling/constructionPlan';
+import youth2030 from '@/crawling/youth2030/supplyPlan';
 
 export default {
   constructionPlan,

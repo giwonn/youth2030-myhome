@@ -1,5 +1,5 @@
 import { Locator, Page } from 'playwright';
-import { initBrowser, initPage } from './common';
+import { initBrowser, initPage } from '@/crawling/common';
 
 // 토지이용계획이력을 가져와서 건설 예정인 청년주택 리스트 다운로드
 export default async function crawling() {

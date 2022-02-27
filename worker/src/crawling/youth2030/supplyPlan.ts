@@ -1,5 +1,5 @@
 import type { Page } from 'playwright';
-import {initBrowser, initPage} from '../common';
+import {initBrowser, initPage} from '@/crawling/common';
 
 export class Location {
     year?: number;

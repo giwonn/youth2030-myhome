@@ -1,4 +1,4 @@
-import { Browser, chromium, Locator, Page } from 'playwright';
+import { Browser, chromium } from 'playwright';
 
 export function initBrowser() {
   return chromium.launch({

@@ -1,4 +1,4 @@
-import supplyPlan from './supplyPlan'
+import supplyPlan from '@/crawling/youth2030/supplyPlan'
 
 export default {
     supplyPlan,
