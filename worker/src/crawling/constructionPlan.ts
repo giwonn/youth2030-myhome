@@ -16,8 +16,8 @@ export default async function crawling() {
 
   // 서울 지역 토지이용계획이력 CSV 다운 버튼으로 이동
   const seoulColumn: Locator = page
-    .locator('td:nth-child(2)', { hasText: '서울' })
-    .locator('xpath=..');
+  .locator('td:nth-child(2)', {hasText: '서울'})
+  .locator('xpath=..');
   const newDate = await seoulColumn.locator('td:nth-child(4)').innerHTML(); // 파일 업데이트 날짜
 
   //   if (updatedDate === newDate) return;

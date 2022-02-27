@@ -20,19 +20,19 @@ services:
   #     - front:/app/node_modules
   #   ports:
   #     - 3000:3000
-
-  back:
-    build:
-      context: ./back
-      dockerfile: Dockerfile.dev
-      # target: unit-test
-    image: youth2030-myhome-back
-    container_name: youth2030-myhome-back
-    restart: always
-    volumes:
-      - ./back:/app
-      - back:/app/node_modules
-      # - .git:/app/.git
+  #
+  #  back:
+  #    build:
+  #      context: ./back
+  #      dockerfile: Dockerfile.dev
+  #      # target: unit-test
+  #    image: youth2030-myhome-back
+  #    container_name: youth2030-myhome-back
+  #    restart: always
+  #    volumes:
+  #      - ./back:/app
+  #      - back:/app/node_modules
+  #      # - .git:/app/.git
 
   nginx:
     image: nginx
@@ -43,9 +43,35 @@ services:
     volumes:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
-      - front
-      - back
+      #      - front
+      #      - back
+      - worker
+
+  worker:
+    build:
+      context: ./worker
+      dockerfile: Dockerfile.dev
+    image: youth2030-myhome-worker
+    container_name: youth2030-myhome-worker
+    restart: always
+    volumes:
+      - ./worker:/usr/app
+      - worker:/usr/app/node_modules
+
+  database:
+    image: postgres:14-alpine
+    container_name: youth2030-myhome-database
+    restart: always
+    volumes:
+      - database:/var/lib/postgresql/data
 
 volumes:
   front:
   back:
+  worker:
+  database:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./database
