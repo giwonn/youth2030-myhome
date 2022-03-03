@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import type { SupplyPlan } from '@/crawling/youth2030/supplyPlan';
+import type { SupplyPlan } from '@/crawling/youth2030/supplyPlan.class';
 import crawling from '@/crawling/youth2030/supplyPlan';
 import { FIRST_CONTENT } from './constants/supplyPlan.spec.constants';
 
