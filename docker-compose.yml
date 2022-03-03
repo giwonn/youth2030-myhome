@@ -20,11 +20,11 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: "${DATABASE_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
     ports:
       - 3306:3306
     volumes:
-      - ${DATABASE_DIR}:/var/lib/mysql
+      - ${DB_DIR}:/var/lib/mysql
 
 volumes:
   front:
