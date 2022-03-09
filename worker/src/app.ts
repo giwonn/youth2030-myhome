@@ -11,9 +11,14 @@ import config from '@/config';
 
 // schedule.scheduleJob('0 0 * * *', crawling);
 
-// crawling();
+crawling().then(res => {
+  createConnection(config.database.connection).then(conn => {
+    console.log('성공');
+  });
+});
 
-createConnection(config.dbConnection).then(r => {
+
+createConnection(config.database.connection).then(r => {
   console.log('성공');
 });
 

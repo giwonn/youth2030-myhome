@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "target": "es2016"
+    "target": "es2017"
     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": [
       "es6",
@@ -30,6 +30,8 @@
     }
   },
   "include": [
-    "src", "tests","playwright.config.ts"
+    "src",
+    "tests",
+    "playwright.config.ts"
   ]
 }

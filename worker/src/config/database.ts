@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import type { ConnectionOptions } from 'typeorm';
 
+
 export default {
-  dbConnection: <ConnectionOptions> {
+  connection: <ConnectionOptions> {
     type: 'mysql',
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT!),
